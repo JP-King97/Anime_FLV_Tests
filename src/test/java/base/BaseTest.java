@@ -23,11 +23,11 @@ public class BaseTest {
     public void setUp(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOpt = new ChromeOptions();
-       // chromeOpt.addArguments("--no-sandbox");
-       // chromeOpt.addArguments("--disable-dev-shm-usage");
+        //chromeOpt.addArguments("--no-sandbox");
+        //chromeOpt.addArguments("--disable-dev-shm-usage");
        // chromeOpt.addArguments("--window-size=1920,1080");
        // chromeOpt.addExtensions(new File("AdBlock-el-mejor-bloqueador-de-anuncios.crx"));
-        //chromeOpt.addArguments("--headless");
+        chromeOpt.addArguments("--headless");
         driver = new ChromeDriver(chromeOpt);
         wait = new WebDriverWait(driver, Duration.ofSeconds(15000));
         driver.get("https://www3.animeflv.net/");
