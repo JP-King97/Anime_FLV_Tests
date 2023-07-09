@@ -1,14 +1,16 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
     private WebDriver driver;
     private WebDriverWait wait;
     private final By homeButton = By.cssSelector("ul.Menu > li:nth-child(1) > a");
-    private final By directoryButton = By.cssSelector("ul.Menu > li:nth-child(2) > a");
+    private final By directoryButton = By.cssSelector("input[id=\"search-anime\"]");
 
     public HomePage(WebDriver driver, WebDriverWait wait){
         this.driver = driver;
@@ -16,12 +18,17 @@ public class HomePage {
     }
 
     public HomePage clickHomeButton(){
-        driver.findElement(homeButton).click();
+        wait.until(ExpectedConditions.elementToBeClickable(homeButton));
+        driver.findElement(homeButton).sendKeys(Keys.ENTER);
         return new HomePage(driver,wait);
     }
 
+    public String checkHeaderPage(){
+        return driver.getTitle();
+    }
+
     public DirectoryPage clickDirectoryButton(){
-        driver.findElement(directoryButton).click();
+        driver.findElement(directoryButton).sendKeys(Keys.ENTER);
         return new DirectoryPage(driver,wait);
     }
 
