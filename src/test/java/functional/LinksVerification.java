@@ -1,4 +1,4 @@
-package funtional;
+package functional;
 
 import base.BaseTest;
 import org.openqa.selenium.Keys;
@@ -38,7 +38,12 @@ public class LinksVerification extends BaseTest {
         for(int i = 0; i< homePg.getNumberOfAnimesInBroadcast(); i++){
             WebElement animeBC = homePg.getAnimeInBroadcast(i);
             wait.until(ExpectedConditions.visibilityOf(animeBC));
-            String animeNameOnList = animeBC.getAttribute("innerText").replace("\n"+"ANIME","");
+            String animeNameOnList = animeBC.getAttribute("innerText");
+            if (animeNameOnList.contains("ANIME")){
+                animeNameOnList = animeBC.getAttribute("innerText").replace("\n" + "ANIME","");
+            }else{
+                animeNameOnList = animeBC.getAttribute("innerText").replace("\n" + "OVA","");
+            }
             animeBC.sendKeys(Keys.ENTER);
             AnimePage iAnimeOnBroadcast = new AnimePage(driver,wait);
             Assert.assertEquals(iAnimeOnBroadcast.getAnimeName(),animeNameOnList,"Name on page is different to the name on the broadcasting list");

@@ -75,7 +75,7 @@ public class HomePage {
     }
 
     public String getTvType_RecentlyAdded(int numberOnList){
-        return driver.findElements(By.cssSelector("ul.ListAnimes a  span.Type.tv")).get(numberOnList).getAttribute("innerText");
+        return driver.findElements(By.cssSelector("ul.ListAnimes a  span.Type")).get(numberOnList).getAttribute("innerText");
     }
 
     public String getAnimeName_RecentlyAdded(int numberOnList){
