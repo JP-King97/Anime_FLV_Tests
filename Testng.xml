@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name = "Link Verification Testing Suite">
+<suite name = "Link Verification Testing Suite" >
     <test name = "Link Verification Tests" >
         <classes>
             <class name = "functional.LinksVerification" />
