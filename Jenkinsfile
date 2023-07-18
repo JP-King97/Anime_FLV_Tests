@@ -19,13 +19,13 @@ pipeline {
         
         stage('Build'){
             steps{
-                sh 'cd Anime_FLV_Tests'
+                bat 'cd Anime_FLV_Tests'
             }
         }
         
         stage('Test'){
             steps{
-                sh "mvn clean test"
+                bat "mvn clean test"
             }
         }
     }
