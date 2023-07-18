@@ -17,11 +17,11 @@ pipeline {
         
         }
         
-       // stage('Build'){
-       //     steps{
-       //         sh 'mvn clean install -e'
-       //     }
-       // }
+        stage('Build'){
+            steps{
+                sh 'cd Anime_FLV_Tests'
+            }
+        }
         
         stage('Test'){
             steps{
