@@ -26,7 +26,6 @@ public class BaseTest {
         chromeOpt.addArguments("--no-sandbox");
         chromeOpt.addArguments("--disable-dev-shm-usage");
        // chromeOpt.addArguments("--window-size=1920,1080");
-       // chromeOpt.addExtensions(new File("AdBlock-el-mejor-bloqueador-de-anuncios.crx"));
         //chromeOpt.addArguments("--headless");
         driver = new ChromeDriver(chromeOpt);
         wait = new WebDriverWait(driver, Duration.ofSeconds(15000));
