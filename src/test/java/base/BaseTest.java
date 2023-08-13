@@ -25,7 +25,7 @@ public class BaseTest {
         ChromeOptions chromeOpt = new ChromeOptions();
         chromeOpt.addArguments("--no-sandbox");
         chromeOpt.addArguments("--disable-dev-shm-usage");
-       // chromeOpt.addArguments("--window-size=1920,1080");
+        chromeOpt.addArguments("--window-size=1920,1080");
         //chromeOpt.addArguments("--headless");
         driver = new ChromeDriver(chromeOpt);
         wait = new WebDriverWait(driver, Duration.ofSeconds(15000));
