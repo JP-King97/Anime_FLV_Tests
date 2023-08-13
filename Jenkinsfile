@@ -16,17 +16,19 @@ pipeline {
         
         }
         
-       // stage('Build'){
-       //     steps{
-       //         bat 'cd Anime_FLV_Tests'
-       //     }
-       // }
-        
         stage('Test'){
             steps{
                 bat "mvn clean test"
             }
         }
+
+        stage('Generate Allure Reports'){
+            steps{
+                allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+            }
+        }
+
+
     }
 }
 //
