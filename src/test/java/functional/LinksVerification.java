@@ -1,6 +1,7 @@
 package functional;
 
 import base.BaseTest;
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,6 +13,7 @@ import pages.EpisodePage;
 
 public class LinksVerification extends BaseTest {
 
+    @Step ("homeButtonLink")
     @Test
     public void homeButtonLink(){
         homePg.clickHomeButton();
@@ -19,6 +21,7 @@ public class LinksVerification extends BaseTest {
         Assert.assertEquals(title,"Ver Anime Online HD — AnimeFLV","Page title incorrect");
     }
 
+    @Step("directoryButtonLink")
     @Test
     public void directoryButtonLink(){
         DirectoryPage directoryPg = homePg.clickDirectoryButton();
@@ -26,6 +29,7 @@ public class LinksVerification extends BaseTest {
         Assert.assertEquals(title,"Lista completa de Animes");
     }
 
+    @Step("homeLogoLink")
     @Test
     public void homeLogoLink(){
         homePg.clickHomeLogo();
@@ -33,6 +37,7 @@ public class LinksVerification extends BaseTest {
         Assert.assertEquals(title,"Ver Anime Online HD — AnimeFLV","Page title incorrect");
     }
 
+    @Step("checkBroadcastingAnimesLinks")
     @Test
     public void checkBroadcastingAnimesLinks(){
         for(int i = 0; i< homePg.getNumberOfAnimesInBroadcast(); i++){
@@ -51,6 +56,7 @@ public class LinksVerification extends BaseTest {
         }
     }
 
+    @Step("checkLastEpisodes")
     @Test
     public void checkLastEpisodes(){
         for(int i=0; i<homePg.getNumberOfLastEpisodes();i++){
@@ -65,6 +71,7 @@ public class LinksVerification extends BaseTest {
         }
     }
 
+    @Step("checkLastAnimesAdded")
     @Test
     public void checkLastAnimesAdded(){
         for(int i=0 ;i<homePg.getNumberOfAnimesRecentlyAdded();i++){
