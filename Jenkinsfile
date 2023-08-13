@@ -17,11 +17,11 @@ pipeline {
         
         }
         
-        stage('Build'){
-            steps{
-                bat 'cd Anime_FLV_Tests'
-            }
-        }
+       // stage('Build'){
+       //     steps{
+       //         bat 'cd Anime_FLV_Tests'
+       //     }
+       // }
         
         stage('Test'){
             steps{
