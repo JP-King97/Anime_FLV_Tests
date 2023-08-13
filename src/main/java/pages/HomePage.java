@@ -37,7 +37,7 @@ public class HomePage {
     }
 
     public HomePage clickHomeLogo(){
-        driver.findElement(homeLogo).click();
+        driver.findElement(homeLogo).sendKeys(Keys.ENTER);
         return new HomePage(driver,wait);
     }
 

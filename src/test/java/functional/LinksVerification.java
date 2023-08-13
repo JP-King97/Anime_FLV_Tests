@@ -51,19 +51,19 @@ public class LinksVerification extends BaseTest {
         }
     }
 
-   // @Test
-   // public void checkLastEpisodes(){
-   //     for(int i=0; i<homePg.getNumberOfLastEpisodes();i++){
-   //         WebElement lastEpisode = homePg.getLastEpisode(i);
-   //         wait.until(ExpectedConditions.visibilityOf(lastEpisode));
-   //         String animeEp = homePg.getEpNumber_LastEps(i);
-   //         String animeName = homePg.getAnimeName_LastEps(i);
-   //         lastEpisode.sendKeys(Keys.ENTER);
-   //         EpisodePage animeEpPg = new EpisodePage(driver,wait);
-   //         Assert.assertEquals(animeEpPg.getTitle(),animeName+" "+animeEp,"Episode title different from home page last episodes");
-   //         driver.navigate().back();
-   //     }
-   // }
+    @Test
+    public void checkLastEpisodes(){
+        for(int i=0; i<homePg.getNumberOfLastEpisodes();i++){
+            WebElement lastEpisode = homePg.getLastEpisode(i);
+            wait.until(ExpectedConditions.visibilityOf(lastEpisode));
+            String animeEp = homePg.getEpNumber_LastEps(i);
+            String animeName = homePg.getAnimeName_LastEps(i);
+            lastEpisode.sendKeys(Keys.ENTER);
+            EpisodePage animeEpPg = new EpisodePage(driver,wait);
+            Assert.assertEquals(animeEpPg.getTitle(),animeName+" "+animeEp,"Episode title different from home page last episodes");
+            driver.navigate().back();
+        }
+    }
 
     @Test
     public void checkLastAnimesAdded(){
