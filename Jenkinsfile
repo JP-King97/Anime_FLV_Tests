@@ -24,7 +24,7 @@ pipeline {
 
         stage('Generate Allure Reports'){
             steps{
-                allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+                allure includeProperties: false, jdk: '', results: [[path: 'ALLURE_HOME/allure-results']]
             }
         }
 
