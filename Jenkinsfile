@@ -18,9 +18,7 @@ pipeline {
 
         stage('Start VNC Recording') {
             steps {
-                script {
-                    sh 'vnc2flv --start-recording output.flv'
-                }
+                sh 'vnc2flv --start-recording output.flv'
             }
         }
         
@@ -32,9 +30,7 @@ pipeline {
 
         stage('Stop VNC Recording') {
             steps {
-                script {
-                    sh 'vnc2flv --stop-recording output.flv'
-                }
+                sh 'vnc2flv --stop-recording output.flv'
             }
         }
 
