@@ -18,7 +18,12 @@ pipeline {
 
         stage('Start VNC Recording') {
             steps {
-                sh 'vnc2flv --start-recording output.flv'
+                // Configure the VncRecorder plugin
+                vncRecorder(
+                    server: 'your-vnc-server',
+                    port: 5900,
+                    password: 'your-vnc-password'
+                )
             }
         }
         
@@ -30,7 +35,8 @@ pipeline {
 
         stage('Stop VNC Recording') {
             steps {
-                sh 'vnc2flv --stop-recording output.flv'
+                // Stop the VNC recording
+                vncRecorderStop()
             }
         }
 
