@@ -19,6 +19,7 @@ pipeline {
             steps {
             sh 'Xvnc :1 -screen 0 1024x768x16 &'
             sh 'export DISPLAY=:1'
+            }
         }
 
 
