@@ -18,7 +18,9 @@ pipeline {
         stage('Start VNC session'){
             steps {
             bat 'start Xvnc :1 -screen 0 1024x768x16 &'
-            bat 'set DISPLAY=:1'
+
+            sleep 10
+            //bat 'set DISPLAY=:1'
             }
         }
 
