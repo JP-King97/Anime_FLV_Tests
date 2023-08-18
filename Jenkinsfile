@@ -20,7 +20,7 @@ pipeline {
 
                   bat 'taskkill /F /IM Xvnc.exe'
                   }
-              }
+              
          }
 
         stage('Start VNC Recording') {
