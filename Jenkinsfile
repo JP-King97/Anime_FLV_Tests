@@ -17,10 +17,12 @@ pipeline {
         }
         stage('Start VNC session'){
             steps {
-            bat 'start Xvnc :1 -screen 0 1024x768x16 &'
+                script{
+                bat 'start Xvnc :1 -screen 0 1024x768x16 &'
 
-            sleep 10
-            //bat 'set DISPLAY=:1'
+                sleep 10
+                //bat 'set DISPLAY=:1'
+                }
             }
         }
 
@@ -38,7 +40,10 @@ pipeline {
         
         stage('Test'){
             steps{
-                bat "mvn clean test"
+                script{
+                    env.DISPLAY = ":1"
+                    bat "mvn clean test"
+                }
             }
         }
 
