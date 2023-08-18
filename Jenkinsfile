@@ -17,8 +17,8 @@ pipeline {
         }
         stage('Start VNC session'){
             steps {
-            sh 'Xvnc :1 -screen 0 1024x768x16 &'
-            sh 'export DISPLAY=:1'
+            bat 'start Xvnc :1 -screen 0 1024x768x16 &'
+            bat 'set DISPLAY=:1'
             }
         }
 
@@ -58,7 +58,7 @@ pipeline {
             always {
                 // Archive the recorded video as an artifact
                 archiveArtifacts artifacts: 'output.flv', allowEmptyArchive: true
-                sh 'pkill Xvnc'
+                bat 'taskkill /F /IM Xvnc.exe'
             }
         }
 
