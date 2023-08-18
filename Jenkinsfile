@@ -20,8 +20,9 @@ pipeline {
                 script{
                 bat 'start Xvnc :1 -screen 0 1024x768x16 &'
 
-                sleep 10
-                //bat 'set DISPLAY=:1'
+                env.DISPLAY = ":1"              
+
+                bat 'taskkill /F /IM Xvnc.exe'
                 }
             }
         }
@@ -41,7 +42,7 @@ pipeline {
         stage('Test'){
             steps{
                 script{
-                    env.DISPLAY = ":1"
+
                     bat "mvn clean test"
                 }
             }
@@ -65,7 +66,6 @@ pipeline {
             always {
                 // Archive the recorded video as an artifact
                 archiveArtifacts artifacts: 'output.flv', allowEmptyArchive: true
-                bat 'taskkill /F /IM Xvnc.exe'
             }
         }
 
