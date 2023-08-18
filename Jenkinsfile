@@ -13,21 +13,21 @@ pipeline {
         stage('Checkout'){
             steps{
             checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'a4cd17d1-a90c-498f-8384-35f1239f0300', url: 'https://github.com/JP-King97/Anime_FLV_Tests.git']])            }
-            
+
         }
 
 
-        stage('Start VNC session'){
-            steps {
-                script{
-                bat 'Xvnc :1 -screen 0 1024x768x16'
-
-                env.DISPLAY = ":1"
-
-                bat 'taskkill /F /IM Xvnc.exe'
-                }
-            }
-        }
+       // stage('Start VNC session'){
+       //     steps {
+       //         script{
+       //         bat 'Xvnc :1 -screen 0 1024x768x16'
+//
+       //         env.DISPLAY = ":1"
+//
+       //         bat 'taskkill /F /IM Xvnc.exe'
+       //         }
+       //     }
+       // }
 
 
        // stage('Start VNC Recording and test'){
@@ -45,16 +45,16 @@ pipeline {
        //     }
        // }
 
-        stage('Start VNC Recording') {
-            steps {
-                // Configure the VncRecorder plugin
-                vncRecorder(
-                    server: 'your-vnc-server',
-                    port: 5900,
-                    password: 'your-vnc-password'
-                )
-            }
-        }
+       // stage('Start VNC Recording') {
+       //     steps {
+       //         // Configure the VncRecorder plugin
+       //         vncRecorder(
+       //             server: 'your-vnc-server',
+       //             port: 5900,
+       //             password: 'your-vnc-password'
+       //         )
+       //     }
+       // }
         
         stage('Test'){
             steps{
@@ -65,12 +65,12 @@ pipeline {
             }
         }
 
-        stage('Stop VNC Recording') {
-            steps {
-                // Stop the VNC recording
-                vncRecorderStop()
-            }
-        }
+       // stage('Stop VNC Recording') {
+       //     steps {
+       //         // Stop the VNC recording
+       //         vncRecorderStop()
+       //     }
+       // }
 
         stage('Generate Allure Reports'){
             steps{
