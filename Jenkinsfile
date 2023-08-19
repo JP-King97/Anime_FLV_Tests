@@ -19,58 +19,58 @@ pipeline {
         }
 
 
-      //  stage('Start VNC session'){
-      //      steps {
-      //          script{
-      //          bat 'Xvnc :1 -screen 0 1024x768x16'
-      //          env.DISPLAY = ":1"
-      //          bat 'taskkill /F /IM Xvnc.exe'
-      //          }
-      //      }
-      //  }
-
-
-        stage('Start VNC Recording and test'){
-            steps{
-                script {
-                    // Start Xvnc server and run test in the background
-                    def command = """
-                        Xvnc :1 -screen 0 1024x768x16 &
-                        export DISPLAY=:1
-                        mvn clean test
-                        taskkill /F /IM Xvnc.exe
-                    """
-                    bat(command)
+        stage('Start VNC session'){
+            steps {
+                script{
+                bat 'Xvnc :1 -screen 0 1024x768x16'
+                env.DISPLAY = ":1"
+                bat 'taskkill /F /IM Xvnc.exe'
                 }
             }
         }
 
-      //  stage('Start VNC Recording') {
-      //      steps {
-      //          // Configure the VncRecorder plugin
-      //          vncRecorder(
-      //              server: 'your-vnc-server',
-      //              port: 5900,
-      //              password: 'your-vnc-password'
-      //          )
-      //      }
-      //  }
-      //
-      //  stage('Test'){
-      //      steps{
-      //          script{
 
-      //              bat "mvn clean test"
-      //          }
-      //      }
-      //  }
+     ///   stage('Start VNC Recording and test'){
+     ///       steps{
+     ///           script {
+     ///               // Start Xvnc server and run test in the background
+     ///               def command = """
+     ///                   Xvnc :1 -screen 0 1024x768x16 &
+     ///                   export DISPLAY=:1
+     ///                   mvn clean test
+     ///                   taskkill /F /IM Xvnc.exe
+     ///               """
+     ///               bat(command)
+     ///           }
+     ///       }
+     ///   }
 
-      //  stage('Stop VNC Recording') {
-      //      steps {
-      //          // Stop the VNC recording
-      //          vncRecorderStop()
-      //      }
-      //  }
+        stage('Start VNC Recording') {
+            steps {
+                // Configure the VncRecorder plugin
+                vncRecorder(
+                    server: 'your-vnc-server',
+                    port: 5900,
+                    password: 'your-vnc-password'
+                )
+            }
+        }
+
+        stage('Test'){
+            steps{
+                script{
+
+                    bat "mvn clean test"
+                }
+            }
+        }
+
+        stage('Stop VNC Recording') {
+            steps {
+                // Stop the VNC recording
+                vncRecorderStop()
+            }
+        }
 
         stage('Generate Allure Reports'){
             steps{
