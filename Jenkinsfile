@@ -3,7 +3,7 @@ pipeline{
     agent any
     environment{
         PATH = "/opt/apache-maven-3.9.3/bin:$PATH"
-        FFMPEG_DIR = "${WORKSPACE}/ffmpeg-6.0"  // Assuming your tar.xz file is in the workspace
+        FFMPEG_DIR = "${WORKSPACE}\\ffmpeg-6.0"  // Assuming your tar.xz file is in the workspace
     }
 
     stages{
@@ -20,8 +20,7 @@ pipeline{
                 script {
                     // Start recording video
                     def videoFile = 'output.flv'
-                    bat "cd ${FFMPEG_DIR}"
-                    bat "ffmpeg -f gdigrab -framerate 30 -t 60 -i desktop ${videoFile}"
+                    def cmd = "${FFMPEG_DIR}\\ffmpeg -f gdigrab -framerate 30 -t 60 -i desktop ${videoFile}"
 
                     // Run your tests
                     def process = bat(script: cmd, returnStatus: true)
