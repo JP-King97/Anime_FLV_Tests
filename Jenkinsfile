@@ -14,6 +14,36 @@ pipeline{
             }
         }
 
+        stage('Download and Install Xvnc') {
+            steps {
+                script {
+                    // Define the URL to download the Xvnc installation package
+                    def xvncUrl = 'https://example.com/path/to/xvnc_installer.exe'  // Replace with the actual download URL
+
+                    // Define the installation directory
+                    def installDir = 'C:\\Xvnc'  // Replace with your desired installation directory
+
+                    // Create the installation directory if it doesn't exist
+                    bat "mkdir -p ${installDir}"
+
+                    // Download Xvnc installer
+                    bat "curl -o ${installDir}\\xvnc_installer.exe ${xvncUrl}"
+
+                    // Install Xvnc silently (modify the installer command as needed)
+                    bat "${installDir}\\xvnc_installer.exe /S"  // /S for silent installation
+
+                    // Optionally, add Xvnc to the system PATH
+                    bat 'setx PATH "%PATH%;C:\\Xvnc"'
+
+                    // Verify Xvnc installation (you can modify this as needed)
+                    bat "C:\\Xvnc\\xvnc.exe --help"  // Example: Check if Xvnc responds to --help
+
+                    // Clean up the installer if needed
+                    bat "del /q ${installDir}\\xvnc_installer.exe"
+                }
+            }
+        }
+
         stage('Start VNC session'){
             steps{
                 script{
