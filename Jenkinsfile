@@ -15,25 +15,12 @@ pipeline{
             }
         }
 
-        stage('Install ffmpeg') {
-            steps {
-                script {
-                    // Extract ffmpeg from the tar.xz archive
-                    bat "7z x ${FFMPEG_DIR}.tar.xz -o${FFMPEG_DIR}"
-
-
-                    // Add the ffmpeg directory to the PATH
-                    env.PATH = "${FFMPEG_DIR}:${env.PATH}"
-                }
-            }
-        }
-
         stage('Test'){
             steps{
                 script {
                     // Start recording video
                     def videoFile = 'output.flv'
-                    def cmd = "ffmpeg -f x11grab -s 1920x1080 -i :0.0 -r 30 -t 60 ${videoFile}"
+                    def cmd = "${FFMPEG_DIR}\\ffmpeg -f gdigrab -framerate 30 -t 60 -i desktop ${videoFile}"
 
                     // Run your tests
                     def process = bat(script: cmd, returnStatus: true)
@@ -44,7 +31,7 @@ pipeline{
                     bat "mvn clean test"
 
                     // Stop recording video
-                    sh "pkill -f 'ffmpeg -f x11grab'"
+                    sh "taskkill /IM ffmpeg.exe /F"
 
                     // Archive the video
                     archiveArtifacts artifacts: videoFile, allowEmptyArchive: true
