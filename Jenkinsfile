@@ -27,8 +27,8 @@ pipeline{
         stage('Start VNC Recording'){
             steps{
                 vncRecorder(
-                    server: 'Kingtero97'
-                    port: 5900
+                    server: 'Kingtero97',
+                    port: 5900,
                     password: 'J3141592'
                 )
             }
