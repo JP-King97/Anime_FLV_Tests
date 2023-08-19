@@ -19,31 +19,30 @@ pipeline {
         }
 
 
-        stage('Start VNC session'){
-            steps {
-                script{
-                bat 'Xvnc :1 -screen 0 1024x768x16 &'
-                bat 'export DISPLAY=:1'
-                bat 'taskkill /F /IM Xvnc.exe'
+      //  stage('Start VNC session'){
+      //      steps {
+      //          script{
+      //          bat 'Xvnc :1 -screen 0 1024x768x16 &'
+      //          bat 'export DISPLAY=:1'
+      //          bat 'taskkill /F /IM Xvnc.exe'
+      //          }
+      //      }
+      //  }
+
+
+        stage('Start VNC Recording and test'){
+            steps{
+                script {
+                    // Start Xvnc server and run test in the background
+                    def command = """
+                        Xvnc :1 -screen 0 1024x768x16 &
+                        export DISPLAY=:1
+                        taskkill /F /IM Xvnc.exe
+                    """
+                    bat(command)
                 }
             }
         }
-
-
-     ///   stage('Start VNC Recording and test'){
-     ///       steps{
-     ///           script {
-     ///               // Start Xvnc server and run test in the background
-     ///               def command = """
-     ///                   Xvnc :1 -screen 0 1024x768x16 &
-     ///                   export DISPLAY=:1
-     ///                   mvn clean test
-     ///                   taskkill /F /IM Xvnc.exe
-     ///               """
-     ///               bat(command)
-     ///           }
-     ///       }
-     ///   }
 
         stage('Start VNC Recording') {
             steps {
