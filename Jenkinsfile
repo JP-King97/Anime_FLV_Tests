@@ -23,9 +23,7 @@ pipeline {
       //      steps {
       //          script{
       //          bat 'Xvnc :1 -screen 0 1024x768x16'
-
       //          env.DISPLAY = ":1"
-
       //          bat 'taskkill /F /IM Xvnc.exe'
       //          }
       //      }
@@ -87,5 +85,7 @@ pipeline {
             archiveArtifacts artifacts: 'output.flv', allowEmptyArchive: true
         }
     }
+
+}
 
 }
