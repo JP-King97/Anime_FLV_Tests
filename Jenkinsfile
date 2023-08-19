@@ -21,7 +21,7 @@ pipeline{
                     // Start recording video
                     def videoFile = 'output.flv'
                     //bat "cd \\ffmpeg-6.0"
-                    def cmd = "cmd /c \"${FFMPEG_PATH}\\ffmpeg\" -f gdigrab -framerate 30 -t 60 -i desktop ${videoFile}"
+                    def cmd = "c \"${FFMPEG_PATH}\\ffmpeg\" -f gdigrab -framerate 30 -t 60 -i desktop ${videoFile}"
 
                     // Run your tests
                     def process = bat(script: cmd, returnStatus: true)
