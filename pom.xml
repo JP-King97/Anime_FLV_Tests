@@ -24,6 +24,12 @@
       <version>2.23.0</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.github.sarxos</groupId>
+      <artifactId>webcam-capture</artifactId>
+      <version>0.3.12</version> <!-- Check for the latest version on GitHub -->
+    </dependency>
+
 
     <dependency>
       <groupId>org.testng</groupId>
