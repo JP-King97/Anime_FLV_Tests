@@ -22,8 +22,8 @@ pipeline {
         stage('Start VNC session'){
             steps {
                 script{
-                bat 'Xvnc :1 -screen 0 1024x768x16'
-                env.DISPLAY = ":1"
+                bat 'Xvnc :1 -screen 0 1024x768x16 &'
+                bat 'export DISPLAY=:1'
                 bat 'taskkill /F /IM Xvnc.exe'
                 }
             }
