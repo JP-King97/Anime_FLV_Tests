@@ -19,8 +19,8 @@ pipeline{
             steps {
                 script {
                     // Extract ffmpeg from the tar.xz archive
-                    sh "tar -xf ${FFMPEG_DIR}.tar.xz -C ${WORKSPACE}"
-                    sh "chmod +x ${FFMPEG_DIR}/ffmpeg"
+                    bat "7z x ${FFMPEG_DIR}.tar.xz -o${FFMPEG_DIR}"
+
 
                     // Add the ffmpeg directory to the PATH
                     env.PATH = "${FFMPEG_DIR}:${env.PATH}"
