@@ -1,5 +1,5 @@
 pipeline {
-    
+
     agent any
     environment {
         PATH = "/opt/apache-maven-3.9.3/bin:$PATH"
@@ -10,37 +10,39 @@ pipeline {
    // }
 
     stages{
+
+
         stage('Checkout'){
             steps{
-                  checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'a4cd17d1-a90c-498f-8384-35f1239f0300', url: 'https://github.com/JP-King97/Anime_FLV_Tests.git']])            }
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'a4cd17d1-a90c-498f-8384-35f1239f0300', url: 'https://github.com/JP-King97/Anime_FLV_Tests.git']])            }
             }
-        
+        }
 
 
-      //  stage('Start VNC session'){
-      //      steps {
-      //          script{
-      //          bat 'Xvnc :1 -screen 0 1024x768x16 &'
-      //          bat 'export DISPLAY=:1'
-      //          bat 'taskkill /F /IM Xvnc.exe'
-      //          }
-      //      }
-      //  }
-
-
-        stage('Start VNC Recording and test'){
-            steps{
-                script {
-                    // Start Xvnc server and run test in the background
-                    def command = """
-                        Xvnc :1 -screen 0 1024x768x16 &
-                        export DISPLAY=:1
-                        taskkill /F /IM Xvnc.exe
-                    """
-                    bat(command)
+        stage('Start VNC session'){
+            steps {
+                script{
+                bat 'Xvnc :1 -screen 0 1024x768x16 &'
+                bat 'export DISPLAY=:1'
+                bat 'taskkill /F /IM Xvnc.exe'
                 }
             }
         }
+
+
+       // stage('Start VNC Recording and test'){
+       //     steps{
+       //         script {
+       //             // Start Xvnc server and run test in the background
+       //             def command = """
+       //                 Xvnc :1 -screen 0 1024x768x16 &
+       //                 export DISPLAY=:1
+       //                 taskkill /F /IM Xvnc.exe
+       //             """
+       //             bat(command)
+       //         }
+       //     }
+       // }
 
         stage('Start VNC Recording') {
             steps {
