@@ -20,7 +20,7 @@ pipeline{
                 script {
                     // Start recording video
                     def videoFile = 'output.flv'
-                    bat "cd ${FFMPEG_DIR}"
+                    bat "cd \\ffmpeg-6.0"
                     bat "ffmpeg -f gdigrab -framerate 30 -t 60 -i desktop ${videoFile}"
 
                     // Run your tests
