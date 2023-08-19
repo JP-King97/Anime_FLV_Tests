@@ -16,8 +16,24 @@ pipeline{
 
         stage('Test'){
             steps{
-                script{
+                script {
+                    // Start recording video
+                    def videoFile = 'output.flv'
+                    def cmd = "ffmpeg -f x11grab -s 1920x1080 -i :0.0 -r 30 -t 60 ${videoFile}"
+
+                    // Run your tests
+                    def process = bat(script: cmd, returnStatus: true)
+                    if (process != 0) {
+                        error("Failed to start video recording.")
+                    }
+
                     bat "mvn clean test"
+
+                    // Stop recording video
+                    sh "pkill -f 'ffmpeg -f x11grab'"
+
+                    // Archive the video
+                    archiveArtifacts artifacts: videoFile, allowEmptyArchive: true
                 }
             }
         }
