@@ -2,6 +2,7 @@ package base;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Allure;
 import org.monte.media.Format;
 import org.monte.media.FormatKeys;
 import org.monte.media.MovieWriter;
@@ -35,6 +36,7 @@ public class BaseTest {
     protected WebDriverWait wait;
     protected HomePage homePg;
     private SpecializedScreenRecorder specializedScreenRecorder;
+    private String fileName;
     //Metodo para detener la grabación
     private void stopRecording() throws IOException {
         this.specializedScreenRecorder.stop();
@@ -70,6 +72,15 @@ public class BaseTest {
                 null, file, "ScreenRecorder");
         //Empezamos la grabación con las caracteristicas del formato previamente establecidas
         this.specializedScreenRecorder.start();
+        this.fileName = specializedScreenRecorder.getFileName();
+    }
+
+    @Test
+    public void testWithVideo() {
+        // Your test logic here
+
+        // Attach the video to the test case
+        Allure.addAttachment(fileName, "video/avi", String.valueOf(new File("/video/"+fileName)));
     }
 
 

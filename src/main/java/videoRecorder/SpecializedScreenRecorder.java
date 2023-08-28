@@ -17,6 +17,12 @@ public class SpecializedScreenRecorder extends ScreenRecorder {
 	private String name;
 	private File movieFile;
 
+	public String getFileName() {
+		return fileName;
+	}
+
+	private String fileName;
+
 	//Añadimos el parametro de "String name" al final
 	public SpecializedScreenRecorder(GraphicsConfiguration cfg, Rectangle captureArea,
 									 Format fileFormat, Format screenFormat,
@@ -54,8 +60,9 @@ public class SpecializedScreenRecorder extends ScreenRecorder {
 		SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH");
 
 		String formatName = Registry.getInstance().getExtension(fileFormat);
+		fileName = name + "-" + dataFormat.format(new Date()) + "." + formatName;
 		//Devolvemos el archivo con el formato que especificamos
-		return new File(movieFolder, name + "-" + dataFormat.format(new Date()) + "." + formatName);
+		return new File(movieFolder, fileName);
 
 	}
 
