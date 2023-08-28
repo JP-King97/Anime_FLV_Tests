@@ -33,11 +33,11 @@ pipeline{
                 allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
             }
         }
-
-        post{
-            always{
-                archiveArtifacts artifacts: 'output.flv' , allowEmptyArchive: true
-            }
-        }
     }
+
+    post{
+       always{
+           archiveArtifacts artifacts: 'output.flv' , allowEmptyArchive: true
+       }
+   }
 }
